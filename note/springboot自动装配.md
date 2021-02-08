@@ -1,5 +1,5 @@
-###自动装配
-####springboot程序启动
+### 自动装配
+#### springboot程序启动
 * 通过SpringApplication.run()进行容器的初始化，并返回一个正在运行ApplicationContext。
 ````java
 
