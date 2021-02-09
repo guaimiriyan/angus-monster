@@ -17,7 +17,6 @@
 ````
 * 使用注解@SpringBootApplication进行primary source的标识
 1. @SpringBootConfiguration是代表是将其作为一个配置类
-2. @EnableAutoConfiguration通过@Import(AutoConfigurationImportSelector.class)进行如下代码中的
 
 ````java
 @Target({ElementType.TYPE})
@@ -37,6 +36,9 @@
 )
 public @interface SpringBootApplication
 ````
+
+2. @EnableAutoConfiguration通过@Import(AutoConfigurationImportSelector.class)进行如下代码中的， 
+   getAutoConfigurationEntry方法将META-INF/spring.factories中所涉及到的类解析过滤。
 
 ````java
 @Override
@@ -94,7 +96,42 @@ protected List<String> getCandidateConfigurations(AnnotationMetadata metadata, A
         }
 ````
 configurations可以从图片中看出加载的都是一些提供自动装载功能的类</br>
-![自动装载的类](.\pic\autoconfig.png)
+![自动装载的类](..\pic\autoconfig.png)</br>
+
+可以在META-INF的文件目录下看到到加载的一些类</br>
+![配置文件中自动装配类](..\pic\autoconfig2.png)</br>
+
+在这些类里找几个常用的类进行分析，例如ServletWebServerFactoryAutoConfiguration</br>
+
+```java
+@Configuration
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnClass(ServletRequest.class)
+@ConditionalOnWebApplication(type = Type.SERVLET)
+//启用ServerProperties中的配置，比如server.port之类
+@EnableConfigurationProperties(ServerProperties.class)
+@Import({ ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar.class,
+		ServletWebServerFactoryConfiguration.EmbeddedTomcat.class,
+		ServletWebServerFactoryConfiguration.EmbeddedJetty.class,
+		ServletWebServerFactoryConfiguration.EmbeddedUndertow.class })
+public class ServletWebServerFactoryAutoConfiguration {
+
+	@Bean
+	public ServletWebServerFactoryCustomizer servletWebServerFactoryCustomizer(ServerProperties serverProperties) {
+		return new ServletWebServerFactoryCustomizer(serverProperties);
+	}
+
+	//使用@ConditionalOnClass判断在整个Springboot项目存在Tomcat.class条件下才进行注册该bean。
+   //从这里就可以看出就算我们不进行配置，springboot也会给我们自动装配tomcat。
+	@Bean
+	@ConditionalOnClass(name = "org.apache.catalina.startup.Tomcat")
+	public TomcatServletWebServerFactoryCustomizer tomcatServletWebServerFactoryCustomizer(
+			ServerProperties serverProperties) {
+		return new TomcatServletWebServerFactoryCustomizer(serverProperties);
+	}
+}
+
+```
 
 3. 扫描包的作用域为主类所属包下及子包下。
 
