@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/angusMonster.iml" filepath="$PROJECT_DIR$/.idea/angusMonster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/concurrency/concurrency.iml" filepath="$PROJECT_DIR$/concurrency/concurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" filepath="$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" filepath="$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-dev.iml" filepath="$PROJECT_DIR$/monster/foodie-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-mapper/foodie-mapper.iml" filepath="$PROJECT_DIR$/monster/foodie-mapper/foodie-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" filepath="$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" filepath="$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/note/Database/mybatis-generator-for-imooc/mybatis-generator-for-imooc.iml" filepath="$PROJECT_DIR$/note/Database/mybatis-generator-for-imooc/mybatis-generator-for-imooc.iml" />
+    </modules>
+  </component>
+</project>
