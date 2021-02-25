@@ -7,14 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="foodie-service" />
-        <module name="foodie-pojo" />
-        <module name="foodie-common" />
         <module name="foodie-api" />
         <module name="foodie-mapper" />
+        <module name="foodie-pojo" />
+        <module name="foodie-common" />
         <module name="mybatis-generator-for-imooc" />
+        <module name="concurrency" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="concurrency" target="8" />
       <module name="foodie-api" target="8" />
       <module name="foodie-common" target="8" />
       <module name="foodie-dev" target="8" />
