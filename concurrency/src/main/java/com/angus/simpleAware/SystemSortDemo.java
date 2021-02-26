@@ -36,6 +36,11 @@ import java.util.Set;
      * 4、A—》B B-》C  = A-》C
      *
      *
+     * 如何保证可见性
+     * java层面-就是基于happens-before规则
+     * jvm层面是通过添加内存屏障
+     * cpu级别就是mesi、总线锁、缓存锁
+     *
      */
     static int a = 0;
     static int b = 0;
