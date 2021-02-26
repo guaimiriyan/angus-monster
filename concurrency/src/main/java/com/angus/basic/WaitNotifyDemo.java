@@ -45,6 +45,20 @@ public class WaitNotifyDemo {
      * This method should only be called by a thread that is the owner of this object's monitor.
      * See the notify method for a description of the ways in which a thread can become the owner of a monitor.
      *
+     *
+     * 自我理解：
+     * wait()和notifyall()总是成对出现，可以分布在不同持有相同对象的不同同步块中
+     * 也可以在相同同步块中，还是通过语义进行
+     *
+     * getfood         putfood
+     * while(null)     while(full)
+     * [wait()]        [wait()]
+     *         \       /
+     *           \   /
+     *            / \
+     *          /    \
+     * notifyall()   notifuall()
+     *
      */
 
 
