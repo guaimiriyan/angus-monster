@@ -71,7 +71,35 @@ public class SynchronizedDemo {
      *
      * 结论：永远都是通过对象头在进行操作，锁住的只是单单的某个对象。
      *
+     *四、synchronzied的字节码文件
      *
+     * public void methodObj();
+     *     Code:
+     *        0: aload_0
+     *        1: getfield      #3                  // Field obj1:Ljava/lang/Object;
+     *        4: dup
+     *        5: astore_1
+     *        6: monitorenter
+     *        7: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+     *       10: ldc           #12                 // String synchronized use in method,with obj's params!
+     *       12: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     *       15: ldc2_w        #7                  // long 10000l
+     *       18: invokestatic  #9                  // Method java/lang/Thread.sleep:(J)V
+     *       21: goto          29
+     *       24: astore_2
+     *       25: aload_2
+     *       26: invokevirtual #11                 // Method java/lang/InterruptedException.printStackTrace:()V
+     *       29: aload_1
+     *       30: monitorexit
+     *       31: goto          39
+     *       34: astore_3
+     *       35: aload_1
+     *       36: monitorexit
+     *       37: aload_3
+     *       38: athrow
+     *       39: return
+     *
+     *  其中包括monitorenter和 monitorexit来控制同步块进行控制
      *
      * */
 
@@ -158,32 +186,32 @@ public class SynchronizedDemo {
         Thread thread = new Thread(() -> {
             synchronizedDemo.methodNull();
         });
-        Thread thread1 = new Thread(() -> {
-            synchronizedDemo.methodObj();
-        });
-        Thread thread2 = new Thread(() -> {
-           new SynchronizedDemo().methodThis();
-        });
-        Thread thread3 = new Thread(() -> {
-            methodStatic();
-        });
-        Thread thread4 = new Thread(() -> {
-           methodStaticField();
-        });
-        Thread thread5 = new Thread(() -> {
-           methodStaticClass();
-        });
-        Thread thread6 = new Thread(() -> {
-            synchronizedDemo.methodClass();
-        });
+//        Thread thread1 = new Thread(() -> {
+//            synchronizedDemo.methodObj();
+//        });
+//        Thread thread2 = new Thread(() -> {
+//           new SynchronizedDemo().methodThis();
+//        });
+//        Thread thread3 = new Thread(() -> {
+//            methodStatic();
+//        });
+//        Thread thread4 = new Thread(() -> {
+//           methodStaticField();
+//        });
+//        Thread thread5 = new Thread(() -> {
+//           methodStaticClass();
+//        });
+//        Thread thread6 = new Thread(() -> {
+//            synchronizedDemo.methodClass();
+//        });
 
-//        thread.start();
+        thread.start();
 //        thread1.start();
 //        thread2.start();
-        thread3.start();
-        thread4.start();
-        //thread5.start();
-        thread6.start();
+//        thread3.start();
+//        thread4.start();
+//        //thread5.start();
+//        thread6.start();
         long use = System.currentTimeMillis() - start;
         System.out.println("一共使用时间："+use);
     }
