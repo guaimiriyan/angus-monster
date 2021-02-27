@@ -21,6 +21,18 @@ public class ThreadLocalDemo {
      *
      * 一、查询解析
      *
+     * 主要步骤：
+     * 【1】获取当前线程
+     * 【2】获取线程中属性threadLocals
+     * 【3】通过该map获取Entry
+     *      （1）通过threadLocal计算hash值
+     *      （2）寻找该threadLocal对应的Entry
+     *              a.使用hash直接找到
+     *              b.开放寻址继续寻找
+     *      （3）返回值
+     * 【4】若未查找到进行初始化
+     *
+     *
      * Returns the value in the current thread's copy of this
      * thread-local variable.  If the variable has no value for the
      * current thread, it is first initialized to the value returned
@@ -68,6 +80,17 @@ public class ThreadLocalDemo {
      *
      *
      * 二、保存解析
+     *
+     * 主要步骤：
+     * 【1】获取当前线程
+     * 【2】获取线程中属性threadLocals
+     * 【3】通过该map.set方法继续宁设置
+     *      （1）通过threadLocal计算hash值
+     *      （2）寻找该threadLocal对应的Entry
+     *              a.使用hash直接找到
+     *              b.开放寻址继续寻找
+     *      （3）找到就更新值，未找到new Entry()
+     * 【4】若未查找到进行初始化
      *
      *   public void set(T value) {
      *          //1、获取当前线程
