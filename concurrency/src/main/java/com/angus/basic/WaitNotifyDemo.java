@@ -59,6 +59,9 @@ public class WaitNotifyDemo {
      *          /    \
      * notifyall()   notifuall()
      *
+     *
+     * 理解：wait并不需要与notify成对出现只需要等待
+     *
      */
 
 
