@@ -3,6 +3,7 @@ package com.angus.simpleAware;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author admin
@@ -55,5 +56,19 @@ public class AtomicDemo {
         System.out.println(System.currentTimeMillis()-start);
         System.out.println(atomicDemo.atomic);
         System.out.println(atomicDemo.count);
+
+
+        /**
+         * 通过原子更新引用
+         */
+        angus angus = new angus();
+        AtomicReference<angus> angusAtomicReference = new AtomicReference<>(angus);
+        AtomicDemo.angus angusNew = new angus();
+        angusAtomicReference.getAndSet(angusNew);
+
+    }
+
+    static class angus{
+
     }
 }
