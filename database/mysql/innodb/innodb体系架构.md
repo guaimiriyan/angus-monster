@@ -52,7 +52,7 @@ mysql> show variables like 'innodb_purge_threads';
 +----------------------+-------+
 ```
 
-#### 【4】Purge Cleaner Thread
+#### 【4】Page Cleaner Thread
 
 ### 三、内存
 ![innodb内存结构](./pic/innodb内存模型.png)
