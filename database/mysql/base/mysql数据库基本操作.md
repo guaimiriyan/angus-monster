@@ -171,3 +171,23 @@ SUM() 返回某列值之和
 #### 十一、子查询
 1. 作为条件：select * from [table] where [column] in (selet *|[column] from ......);
 2. 作为字段: select [column],(select * from ...) As [newName] from [table];
+
+#### 十二、连接查询
+1. 多个子表进行连接：select a.*,b.* from [table1],[table2] where [condition];</br>
+这种方式使用的table1的每一行去匹配table2的每一行，没有where条件结果就是笛卡尔积table1.size*table2.size;
+2.内连接使用另一种方式连接与第一种是一样：select a.*,b.* from table1 inner join table2 on [condition] where [condition];
+3. 自然连接使用的是相同的字段进行连接：select a.* ,b.* from [table1] natural join [table2]
+4. 左外连接和右外连接，会以左表或右表为基础进行连接，保证左表或右边的数值：select a.* ,b.* from [table1] left|right join [table2] on [conditions]
+5. mysql不支持全外连接 full outter join
+
+#### 十三、组合查询
+1. 使用union对多个语句进行组合：select union select 
+2. union的规则：
+   * 必须包含两条以上的select语句，他们之间使用union
+   * select句子必须包含相同的列、表达式、聚合函数
+   * 列之间必须符合类型要求，至少能隐式转换
+3. union会去掉重复的行，union all则不会
+4. 可以在最后一个select语句后进行order by 进行排序
+
+
+
