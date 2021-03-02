@@ -203,5 +203,10 @@ public class ThreadPoolExecutorDemo {
      *         }
      *     }
      *
+     *
+     *     【5】关闭的区别
+     *     1、shutdown只是将线程池的状态设置为SHUTWDOWN状态，正在执行的任务会继续执行下去，没有被执行的则中断。
+     *     2、而shutdownNow则是将线程池的状态设置为STOP，正在执行的任务则被停止，没被执行任务的则返回。
+     *
      */
 }
