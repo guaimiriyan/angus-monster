@@ -171,3 +171,9 @@ SUM() 返回某列值之和
 #### 十一、子查询
 1. 作为条件：select * from [table] where [column] in (selet *|[column] from ......);
 2. 作为字段: select [column],(select * from ...) As [newName] from [table];
+
+#### 十二、连接查询
+1. 多个子表进行连接：select a.*,b.* from [table1],[table2] where [condition];</br>
+这种方式使用的table1的每一行去匹配table2的每一行，没有where条件结果就是笛卡尔积table1.size*table2.size;
+2. 使用另一种方式连接与第一种是一样：select a.*,b.* from table1 inner join table2 on [condition] where [condition];
+3. 自联结
