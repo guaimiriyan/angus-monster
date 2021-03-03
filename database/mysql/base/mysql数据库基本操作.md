@@ -181,6 +181,7 @@ SUM() 返回某列值之和
 5. mysql不支持全外连接 full outter join
 
 #### 十三、组合查询
+*** 
 1. 使用union对多个语句进行组合：select union select 
 2. union的规则：
    * 必须包含两条以上的select语句，他们之间使用union
@@ -189,5 +190,10 @@ SUM() 返回某列值之和
 3. union会去掉重复的行，union all则不会
 4. 可以在最后一个select语句后进行order by 进行排序
 
-
+#### 十四、全文本搜索
+*** 
+1. 在mysql innodb之前是不存在全文搜索的，目前是支持的：</br>
+alter table [table] add fulltext index  [indexName]\(column) with parser ngram;
+2. show index from [table] 查看是否生效;
+3. bool模式下查询：
 
