@@ -1,7 +1,7 @@
 package com.angus.simpleAware;
 
 /**
- * @author admin
+ * @author angus
  * @version 1.0.0
  * @ClassName DeadLockDemo.java
  * @Description 编写一个产生死锁的demo
@@ -20,8 +20,8 @@ public class DeadLockDemo {
 
         DeadLockDemo deadLockDemo = new DeadLockDemo();
 
-        new Thread(()->{deadLockDemo.method1();}).start();
-        new Thread(()->{deadLockDemo.method2();}).start();
+        new Thread(()->{deadLockDemo.method1();},"angus1").start();
+        new Thread(()->{deadLockDemo.method2();},"angus2").start();
 
 
 
