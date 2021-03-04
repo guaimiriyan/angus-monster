@@ -195,5 +195,63 @@ SUM() 返回某列值之和
 1. 在mysql innodb之前是不存在全文搜索的，目前是支持的：</br>
 alter table [table] add fulltext index  [indexName]\(column) with parser ngram;
 2. show index from [table] 查看是否生效;
-3. bool模式下查询：
+3. bool模式下查询：select * from [table] match([column]) Against(''in boolean model);
+```
++ 包含，词必须存在
+- 排除，词必须不出现
+> 包含，而且增加等级值
+< 包含，且减少等级值
+() 把词组成子表达式（允许这些子表达式作为一个组被包含、
+排除、排列等）
+~ 取消一个词的排序值
+* 词尾的通配符
+"" 定义一个短语（与单个词的列表不一样，它匹配整个短语以便包含或排除这个短语）
+```
+#### 十五、插入数据
+*** 
+1. 按照顺序自动插入：insert into [table] values();
+2. 给定字段插入：insert into [table]\([column],*) values();
+3. 插入多行字段：insert into [table]\([column,*]) values(),(),();
+4. 插入查询数据：insert into [table]\([column,*]) select ([column,*]) from [table2];
+5. 降低插入语句的优先级：insert low priority into;
+
+#### 十六、更新表字段
+*** 
+1. 创建表基本语法：
+```sql
+create table [table]{
+    [column_name] [class] [NULL /NOT NULL] AUTO_INCREMENT,
+    [column_name] [class] [NULL /NOT NULL] default value ,
+    primary key ([column_name],*)
+   }engine = innodb;
+```
+2. 修改表语法：
+```sql
+-- 给表添加列
+alter into [table] add [column] [class];
+--删除表中列
+alter into [table] drop [column];
+--修改表列类型  
+alter table [table] modify [column] [class]
+--修改表列名
+alter table [table] change [column] [old_column] [new_column] [class];
+
+-- 给表添加约束
+-- 添加主键
+alter into [table] add constraint [name] primary key [column];
+-- 添加检查
+alter into [table] add constraint [name] check([condition]);
+-- 添加唯一键
+alter into [table] add constraint [name] unique([column]);
+-- 添加默认
+alter into [table] add constraint [name] default [value] for [column];
+-- 添加外键
+alter into [table] add constraint [name] foreign key(column) references [table]([column]);
+-- 删除表
+drop table [table];
+-- 该表名
+rename table [old_table] to [new_table];
+
+```
+
 
