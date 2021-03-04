@@ -1,8 +1,7 @@
-### Innodb体系架构
+## Innodb体系架构
 #### innodb对应mysql版本说明
-1. 
-#### 一、innodb体系架构图
-![innodb体系架构图](./pic/innodb体系架构图.png)
+### 一、innodb体系架构图
+![innodb体系架构图](pic/innodb体系架构图.png)
 ### 二、后台线程
 *** 
 #### 【1】Master Thread
@@ -72,4 +71,7 @@ mysql> show variables like 'innodb_buffer_pool_instances';
 | innodb_buffer_pool_instances | 1     |
 +------------------------------+-------+
 ```
-#### 【2】
+#### 【2】LRU LIST、ZIPLRU LIST、FREE LIST、FLUSH LIST
+#### 【3】重写日志缓存
+#### 【4】额外内存池
+
