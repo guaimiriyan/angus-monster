@@ -254,4 +254,15 @@ rename table [old_table] to [new_table];
 
 ```
 
-
+#### 十七、使用试图
+1. 查看视图：show create view viewname;
+2. 删除视图：drop view [viewName];
+3. 创建视图：create view [viewName] As select语句;
+4. 视图也可以使用insert、update 、delete语句，但是有如下列的索引不行：
+   * 分组（使用GROUP BY和HAVING）；
+   * 联结；
+   * 子查询；
+   * 并；
+   * 聚集函数（Min()、Count()、Sum()等）；
+   * DISTINCT； 
+   * 导出（计算）列。
