@@ -15,6 +15,10 @@ public class ThreadLocalDemo {
         }
     };
 
+    public static void main(String[] args) {
+        int a = 0<<29;
+        System.out.println(Integer.toBinaryString(a));
+    }
 
     /**
      * 解析threadLocal源码解析
