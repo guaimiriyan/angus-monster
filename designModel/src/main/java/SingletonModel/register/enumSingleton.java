@@ -1,4 +1,4 @@
-package SingletonModel.Enum;
+package SingletonModel.register;
 
 /**
  * @author angus
