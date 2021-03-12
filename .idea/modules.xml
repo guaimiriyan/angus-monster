@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/angusMonster.iml" filepath="$PROJECT_DIR$/.idea/angusMonster.iml" />
       <module fileurl="file://$PROJECT_DIR$/concurrency/concurrency.iml" filepath="$PROJECT_DIR$/concurrency/concurrency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/designModel/concurrency (1).iml" filepath="$PROJECT_DIR$/designModel/concurrency (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" filepath="$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" filepath="$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-dev.iml" filepath="$PROJECT_DIR$/monster/foodie-dev.iml" />

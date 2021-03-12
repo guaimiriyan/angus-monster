@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/monster/pom.xml" />
         <option value="$PROJECT_DIR$/note/Database/mybatis-generator-for-imooc/pom.xml" />
         <option value="$PROJECT_DIR$/concurrency/pom.xml" />
+        <option value="$PROJECT_DIR$/designModel/pom.xml" />
       </list>
     </option>
   </component>
