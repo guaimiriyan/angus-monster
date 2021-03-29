@@ -11,17 +11,26 @@ import com.sun.istack.internal.Nullable;
  */
 public class AngusBeanDefinition {
     @Nullable
-    private volatile Object beanClass;
+    private volatile Class beanClass;
     private boolean primary = false;
     private boolean lazyInit = false;
+    private boolean singlton = true;
     @Nullable
     private String factoryBeanName;
 
-    public Object getBeanClass() {
+    public Class getBeanClass() {
         return beanClass;
     }
 
-    public void setBeanClass(Object beanClass) {
+    public boolean isSinglton() {
+        return singlton;
+    }
+
+    public void setSinglton(boolean singlton) {
+        this.singlton = singlton;
+    }
+
+    public void setBeanClass(Class beanClass) {
         this.beanClass = beanClass;
     }
 
