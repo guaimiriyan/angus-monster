@@ -4,6 +4,7 @@ import selfMvc.mvcframework.annotation.GPController;
 import selfMvc.mvcframework.annotation.GPService;
 import selfSpring.beans.config.AngusBeanDefinition;
 import selfSpring.beans.support.AngusBeanDefinitionRegistry;
+import selfSpring.beans.util.BeanNameUtil;
 
 import java.io.File;
 import java.net.URL;
@@ -46,7 +47,7 @@ public class AngusBeanDefinitionReader {
                 Class<?> aClass1 = Class.forName(aClass);
                 AngusBeanDefinition abd = new AngusBeanDefinition();
                 abd.setBeanClass(aClass1);
-                abd.setFactoryBeanName(toLowerFirst(aClass1.getSimpleName()));
+                abd.setFactoryBeanName(BeanNameUtil.toLowerFirst(aClass1.getSimpleName()));
                 this.beanFactory.registerBeanDefinition(abd.getFactoryBeanName(),abd);
             }
         }catch (Exception e){
@@ -56,9 +57,7 @@ public class AngusBeanDefinitionReader {
     }
 
     private void registerBeanDefinitions(String aClass) {
-        //1、创建beandefinition
-        AngusBeanDefinition abd = new AngusBeanDefinition();
-        abd.setBeanClass(aClass);
+
     }
 
     private void scanClass(String path) {
@@ -90,9 +89,5 @@ public class AngusBeanDefinitionReader {
         return false;
     }
 
-    private String toLowerFirst(String name){
-        char[] chars = name.toCharArray();
-        chars[0] += 32;
-        return String.valueOf(chars);
-    }
+
 }

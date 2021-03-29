@@ -1,5 +1,7 @@
 package selfSpring.context.support;
 
+import selfSpring.beans.factory.BeanFactory;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -30,15 +32,21 @@ public abstract class AngusAbstractApplicationContext {
     public void refresh(){
         synchronized (this.startupShutdownMonitor){
             prepareRefresh();
-            obtainFreshBeanFactory();
+            final AngusDefaultListableBeanFactory beanFactory = obtainFreshBeanFactory();
+            finishBeanFactoryInitialization(beanFactory);
         }
+    }
+
+    protected  void finishBeanFactoryInitialization(AngusDefaultListableBeanFactory beanFactory){
+        beanFactory.preInstantiateSingletons();
     }
 
     /**
      *
+     * @return
      */
-    protected  void obtainFreshBeanFactory(){
-        refreshBeanFactory();
+    protected AngusDefaultListableBeanFactory obtainFreshBeanFactory(){
+        return refreshBeanFactory();
     }
 
     /**
@@ -53,7 +61,7 @@ public abstract class AngusAbstractApplicationContext {
     /**
      * 这里属于委派模式将加载上下文的工作交给子类去做
      */
-    protected abstract void refreshBeanFactory();
+    protected abstract AngusDefaultListableBeanFactory refreshBeanFactory();
 
 
     protected abstract void loadBeanDefinitions(AngusDefaultListableBeanFactory beanFactory);
