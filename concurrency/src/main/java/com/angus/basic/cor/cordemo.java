@@ -16,6 +16,7 @@ public class cordemo {
         /**
          * 问题分析
          * 使用接口的集合是一个集合所以不能放在接口里
+         * 注意：接口中的属性默认未 public static final，所以必须有初始值
          */
         final testPostProcessor testPostProcessor = new testPostProcessor(null);
         final codePostProcessor codePostProcessor = new codePostProcessor(testPostProcessor);
