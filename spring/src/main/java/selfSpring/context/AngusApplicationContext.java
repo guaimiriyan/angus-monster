@@ -1,16 +1,25 @@
 package selfSpring.context;
 
 import com.sun.istack.internal.Nullable;
+import selfMvc.mvcframework.annotation.GPAutowired;
+import selfMvc.mvcframework.annotation.GPService;
+import selfSpring.beans.AngusBeanWrapper;
+import selfSpring.beans.config.AngusBeanDefinition;
 import selfSpring.beans.factory.AngusBeanDefinitionReader;
 import selfSpring.beans.factory.BeanFactory;
+import selfSpring.beans.util.BeanNameUtil;
 import selfSpring.context.support.AngusAbstractApplicationContext;
 import selfSpring.context.support.AngusDefaultListableBeanFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author admin
@@ -22,6 +31,8 @@ import java.util.Properties;
 public class AngusApplicationContext extends AngusAbstractApplicationContext implements BeanFactory {
 
 
+
+    private final Map<String, AngusBeanWrapper> factoryBeanInstanceCache = new ConcurrentHashMap<>(16);
 
     /**
      * 用于存放
@@ -41,9 +52,106 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
 
     private final Object beanFactoryMonitor = new Object();
 
+    public AngusApplicationContext(){
+        setConfigLocations();
+        refresh();
+    }
+
     @Override
     public Object getBean(String name) {
+        //省略doGetBaen,简略单吗
+
+        //1、此处进行单例缓存的获取
+        final Object singleton = beanFactory.getSingleton(name);
+        if (singleton != null){
+            return singleton;
+        }else {
+            //2、获取beandefinition
+            final AngusBeanDefinition abd = beanFactory.beanDefinitionMap.get(name);
+            //3、对dependsOn进行处理，此处省略
+            //4、真正创建
+            beanFactory.getSingleton(name,()->{
+                return  createBean(name, abd);
+            });
+
+        }
         return null;
+    }
+
+    private Object createBean(String name, AngusBeanDefinition abd) {
+        //1、处理重写方法
+        //2、前置处理器
+//        Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
+//        if (bean != null) {
+//            return bean;
+//        }
+        Object beanInstance = doCreateBean(name, abd);
+        return beanInstance;
+    }
+
+    private Object doCreateBean(String name, AngusBeanDefinition abd) {
+        AngusBeanWrapper instanceWrapper = null;
+        if (abd.isSinglton()) {
+            instanceWrapper = this.factoryBeanInstanceCache.remove(name);
+        }
+        if (instanceWrapper == null) {
+            instanceWrapper = createBeanInstance(name, abd);
+        }
+        final Object bean = instanceWrapper.getWrappedInstance();
+        //获取实例化对象的类型
+        Class<?> beanType = instanceWrapper.getWrappedClass();
+
+        //在此处将其放入提前暴露
+        beanFactory.addSingleton(name,bean);
+        //进行属性注入
+        populateBean(name, abd, instanceWrapper);
+        //此处进行aop
+        return bean;
+    }
+
+    private void populateBean(String name, AngusBeanDefinition abd, AngusBeanWrapper instanceWrapper) {
+        final Class<?> wrappedClass = instanceWrapper.getWrappedClass();
+        if (!wrappedClass.isAnnotationPresent(GPService.class)&&!wrappedClass.isAnnotationPresent(GPService.class)) return;
+        //1、初始化前置
+        //2、注入
+        final Field[] declaredFields = wrappedClass.getDeclaredFields();
+        for (Field field : declaredFields) {
+            if (!field.isAnnotationPresent(GPAutowired.class)) continue;
+            GPAutowired autowired = field.getAnnotation(GPAutowired.class);
+            String autowiredBeanName =  autowired.value().trim();
+            if("".equals(autowiredBeanName)){
+                autowiredBeanName = BeanNameUtil.toLowerFirst(field.getType().getName());
+                final Object bean = getBean(autowiredBeanName);
+                field.setAccessible(true);
+                try {
+                    field.set(instanceWrapper.getWrappedInstance(),bean);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        //3、初始化后置
+    }
+
+    private AngusBeanWrapper createBeanInstance(String name, AngusBeanDefinition abd) {
+        //1、获取需要实例化的class
+        final Class beanClass = abd.getBeanClass();
+        AngusBeanWrapper angusBeanWrapper = null;
+        if (beanClass == null){
+            throw new RuntimeException("在beanDefinition中未获取到class！");
+        }
+        try {
+            final Constructor constructor = beanClass.getConstructor(null);
+            constructor.setAccessible(true);
+            final Object instance = constructor.newInstance(null);
+            angusBeanWrapper = new AngusBeanWrapper(instance);
+
+        }catch (Exception e){
+
+        }
+        return angusBeanWrapper;
+
     }
 
     public void setConfigLocations() {
@@ -68,7 +176,7 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
      * 重写AngusAbstractApplicationContext的方法，主要是适配自己的加载方式
      */
     @Override
-    protected final void refreshBeanFactory(){
+    protected final AngusDefaultListableBeanFactory refreshBeanFactory(){
         //1、首先创建默认的DefalutListBeanFactory
         AngusDefaultListableBeanFactory beanFactory = new AngusDefaultListableBeanFactory();
         //2、此处可以对其进行一些属性的配置或者，搞一些个性化方法
@@ -77,6 +185,8 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
         synchronized (this.beanFactoryMonitor) {
             this.beanFactory = beanFactory;
         }
+       return beanFactory;
+
 
     }
 
@@ -86,5 +196,13 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
         AngusBeanDefinitionReader reader = new AngusBeanDefinitionReader();
         //2、直接调用reader的加载beandefindition
         reader.loadBeanDefinitions(this.configLocations,this.beanFactory);
+    }
+
+    /**
+     * 添加一个可以获取到所有能使用到的beanwapper
+     */
+
+    public String[] getBeanDefinitionNames(){
+        return factoryBeanInstanceCache.keySet().toArray(new String[factoryBeanInstanceCache.size()]);
     }
 }
