@@ -22,7 +22,7 @@ public class ThreadLocalDemo {
 
     /**
      * 解析threadLocal源码解析
-     *
+     *  https://blog.csdn.net/wanghao112956/article/details/102678591
      * 一、查询解析
      *
      * 主要步骤：
