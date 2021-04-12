@@ -706,6 +706,9 @@ public class ReadHashMapCode {
 //     *         (A <tt>null</tt> return can also indicate that the map
 //     *         previously associated <tt>null</tt> with <tt>key</tt>.)
 //     */
+/**
+ *
+ */
 //    public V remove(Object key) {
 //         Node<K,V> e;
 //        return (e = removeNode(hash(key), key, null, false, true)) == null ?
@@ -725,20 +728,26 @@ public class ReadHashMapCode {
 //    final  Node<K,V> removeNode(int hash, Object key, Object value,
 //                                                 boolean matchValue, boolean movable) {
 //         Node<K,V>[] tab;  Node<K,V> p; int n, index;
+        //todo 首先判断散列表是否是初始化了的且该hash路由后是有头节点的
 //        if ((tab = table) != null && (n = tab.length) > 0 &&
 //                (p = tab[index = (n - 1) & hash]) != null) {
 //             Node<K,V> node = null, e; K k; V v;
+                //todo 情况一、头节点就是当前需要移除的节点
 //            if (p.hash == hash &&
 //                    ((k = p.key) == key || (key != null && key.equals(k))))
 //                node = p;
+                //todo 头节点不是，且后续还有节点
 //            else if ((e = p.next) != null) {
+                    //todo 情况二 头节点是树节点
 //                if (p instanceof  TreeNode)
 //                    node = (( TreeNode<K,V>)p).getTreeNode(hash, key);
 //                else {
+                        //todo 情况三、已经变为链表形式
 //                    do {
 //                        if (e.hash == hash &&
 //                                ((k = e.key) == key ||
 //                                        (key != null && key.equals(k)))) {
+                                //todo 循环找到与之key相同的节点
 //                            node = e;
 //                            break;
 //                        }
@@ -748,10 +757,13 @@ public class ReadHashMapCode {
 //            }
 //            if (node != null && (!matchValue || (v = node.value) == value ||
 //                    (value != null && value.equals(v)))) {
+                    //todo 如果是是红黑树节点
 //                if (node instanceof  TreeNode)
 //                    (( TreeNode<K,V>)node).removeTreeNode(this, tab, movable);
+                    //todo 如果note == p 就直接将其头指针向下一个
 //                else if (node == p)
 //                    tab[index] = node.next;
+                    //todo 如果 p.next = node 就直接将其p.next = node.next;
 //                else
 //                    p.next = node.next;
 //                ++modCount;
