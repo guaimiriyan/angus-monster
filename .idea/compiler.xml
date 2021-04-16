@@ -7,25 +7,35 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="foodie-service" />
-        <module name="concurrency (1)" />
         <module name="foodie-api" />
         <module name="foodie-mapper" />
+        <module name="rpc-provider" />
+        <module name="design" />
+        <module name="rpc-client" />
         <module name="foodie-pojo" />
         <module name="foodie-common" />
-        <module name="mybatis-generator-for-imooc" />
+        <module name="rpc-api" />
+        <module name="gupaoedu-vip-spring" />
         <module name="concurrency" />
+        <module name="base" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="base" target="8" />
       <module name="concurrency" target="8" />
-      <module name="concurrency (1)" target="8" />
+      <module name="design" target="8" />
       <module name="foodie-api" target="8" />
       <module name="foodie-common" target="8" />
       <module name="foodie-dev" target="8" />
       <module name="foodie-mapper" target="8" />
       <module name="foodie-pojo" target="8" />
       <module name="foodie-service" target="8" />
+      <module name="gupaoedu-vip-spring" target="8" />
       <module name="mybatis-generator-for-imooc" target="1.5" />
+      <module name="rpc-api" target="8" />
+      <module name="rpc-client" target="8" />
+      <module name="rpc-provider" target="8" />
+      <module name="rpc-service" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -35,6 +45,7 @@
       <module name="foodie-mapper" options="-parameters" />
       <module name="foodie-pojo" options="-parameters" />
       <module name="foodie-service" options="-parameters" />
+      <module name="gupaoedu-vip-spring" options="-verbose -bootclasspath &quot;$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_261/jre/lib/rt.jar&quot;" />
     </option>
   </component>
 </project>

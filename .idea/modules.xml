@@ -3,15 +3,20 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/angusMonster.iml" filepath="$PROJECT_DIR$/.idea/angusMonster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/concurrency/concurrency.iml" filepath="$PROJECT_DIR$/concurrency/concurrency.iml" />
-      <module fileurl="file://$PROJECT_DIR$/designModel/concurrency (1).iml" filepath="$PROJECT_DIR$/designModel/concurrency (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/designModel/design.iml" filepath="$PROJECT_DIR$/designModel/design.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" filepath="$PROJECT_DIR$/monster/foodie-api/foodie-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" filepath="$PROJECT_DIR$/monster/foodie-common/foodie-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-dev.iml" filepath="$PROJECT_DIR$/monster/foodie-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-mapper/foodie-mapper.iml" filepath="$PROJECT_DIR$/monster/foodie-mapper/foodie-mapper.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" filepath="$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" filepath="$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/note/Database/mybatis-generator-for-imooc/mybatis-generator-for-imooc.iml" filepath="$PROJECT_DIR$/note/Database/mybatis-generator-for-imooc/mybatis-generator-for-imooc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring/gupaoedu-vip-spring.iml" filepath="$PROJECT_DIR$/spring/gupaoedu-vip-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc-service/rpc-api/rpc-api.iml" filepath="$PROJECT_DIR$/rpc-service/rpc-api/rpc-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc-client/rpc-client.iml" filepath="$PROJECT_DIR$/rpc-client/rpc-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc-service/rpc-provider/rpc-provider.iml" filepath="$PROJECT_DIR$/rpc-service/rpc-provider/rpc-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rpc-service/rpc-service.iml" filepath="$PROJECT_DIR$/rpc-service/rpc-service.iml" />
     </modules>
   </component>
 </project>

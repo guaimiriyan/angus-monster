@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/designModel/pom.xml" />
         <option value="$PROJECT_DIR$/base/pom.xml" />
         <option value="$PROJECT_DIR$/spring/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-client/pom.xml" />
       </list>
     </option>
   </component>
