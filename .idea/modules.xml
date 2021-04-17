@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" filepath="$PROJECT_DIR$/monster/foodie-pojo/foodie-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" filepath="$PROJECT_DIR$/monster/foodie-service/foodie-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/gupaoedu-vip-spring.iml" filepath="$PROJECT_DIR$/spring/gupaoedu-vip-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/io/io.iml" filepath="$PROJECT_DIR$/io/io.iml" />
       <module fileurl="file://$PROJECT_DIR$/rpc-service/rpc-api/rpc-api.iml" filepath="$PROJECT_DIR$/rpc-service/rpc-api/rpc-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/rpc-client/rpc-client.iml" filepath="$PROJECT_DIR$/rpc-client/rpc-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/rpc-service/rpc-provider/rpc-provider.iml" filepath="$PROJECT_DIR$/rpc-service/rpc-provider/rpc-provider.iml" />

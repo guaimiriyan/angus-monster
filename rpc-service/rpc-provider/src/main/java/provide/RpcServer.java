@@ -30,18 +30,18 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
     TimeUnit unit = TimeUnit.MILLISECONDS;
     Map<String,Object> registerRpcService = new ConcurrentHashMap<>();
     //目前使用
-   ExecutorService executorService = Executors.newCachedThreadPool(); //new ThreadPoolExecutor(corePoolSize,
-//            maximumPoolSize,
-//            keepAliveTime,
-//            unit,
-//            new ArrayBlockingQueue<>(10),
-//            new ThreadFactory() {
-//                @Override
-//                public Thread newThread(Runnable r) {
-//                    return new Thread(r,"rpcThread"+threadId.incrementAndGet());
-//                }
-//            },
-//            new ThreadPoolExecutor.AbortPolicy());
+   ExecutorService executorService = new ThreadPoolExecutor(corePoolSize,
+            maximumPoolSize,
+            keepAliveTime,
+            unit,
+            new ArrayBlockingQueue<>(10),
+            new ThreadFactory() {
+                @Override
+                public Thread newThread(Runnable r) {
+                    return new Thread(r,"rpcThread"+threadId.incrementAndGet());
+                }
+            },
+            new ThreadPoolExecutor.AbortPolicy());
     /**
      *使用初始化后置进行数据的rpc的执行
      * @throws Exception
