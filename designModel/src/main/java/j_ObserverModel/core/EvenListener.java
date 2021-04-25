@@ -1,13 +1,9 @@
 package j_ObserverModel.core;
 
-import j_ObserverModel.core.Event;
-import j_ObserverModel.exe.MyCallBack;
-import j_ObserverModel.exe.MyEventType;
-import javafx.event.EventType;
 
+import j_ObserverModel.exe.MyEventType;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**

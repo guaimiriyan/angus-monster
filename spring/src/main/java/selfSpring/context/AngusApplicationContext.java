@@ -52,6 +52,11 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
 
     private final Object beanFactoryMonitor = new Object();
 
+    public AngusApplicationContext(){
+        setConfigLocations();
+        refresh();
+    }
+
     @Override
     public Object getBean(String name) {
         //省略doGetBaen,简略单吗
@@ -191,5 +196,13 @@ public class AngusApplicationContext extends AngusAbstractApplicationContext imp
         AngusBeanDefinitionReader reader = new AngusBeanDefinitionReader();
         //2、直接调用reader的加载beandefindition
         reader.loadBeanDefinitions(this.configLocations,this.beanFactory);
+    }
+
+    /**
+     * 添加一个可以获取到所有能使用到的beanwapper
+     */
+
+    public String[] getBeanDefinitionNames(){
+        return factoryBeanInstanceCache.keySet().toArray(new String[factoryBeanInstanceCache.size()]);
     }
 }
