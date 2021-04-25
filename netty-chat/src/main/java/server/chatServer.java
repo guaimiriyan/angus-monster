@@ -10,6 +10,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import protocol.AngusMessageDecode;
 import protocol.AngusMessageEncode;
@@ -48,6 +49,7 @@ public class chatServer {
                             final ChannelPipeline pipeline = ch.pipeline();
                             //在这里进行channelHandler的添加
                             //目前这里是基于普通的控制带进行聊天的控制
+                            pipeline.addLast(new IdleStateHandler(8,0,0));
                             pipeline.addLast(new AngusMessageDecode());
                             pipeline.addLast(new AngusMessageEncode());
                             pipeline.addLast(new chatServerHandler(onlineUsers));

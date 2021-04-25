@@ -2,7 +2,10 @@ package client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
+import protocol.HeartMessageUtil;
 import protocol.angusMessage;
 
 import java.util.Random;
@@ -21,12 +24,11 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<angusMessage>
 
     ChannelHandlerContext ctx;
     private String nickname;
-    public ChatClientHandler(){
-        System.out.println("请输入你的昵称！");
-        Scanner sc = new Scanner(System.in);
-        if (sc.hasNext()){
-           this.nickname = sc.nextLine();
-        }
+    public ChatClientHandler(String nickname){
+
+           this.nickname = nickname;
+            HeartMessageUtil.ClientNickName = nickname;
+
     }
 
     @Override
@@ -64,6 +66,26 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<angusMessage>
             sc.close();
 
         }).start();
+    }
+
+
+    /**
+     * 未在指定时间给服务器发送心跳就会在这里进行触发触发心跳。
+     * @param ctx
+     * @param evt
+     * @throws Exception
+     */
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent){
+            final IdleStateEvent event = (IdleStateEvent) evt;
+            if (event.state() == IdleState.WRITER_IDLE ) {
+                //如果没有超过十秒钟会自动给服务器端发送一段心跳
+                ctx.writeAndFlush(HeartMessageUtil.getClientHeartMsg());
+            }
+        }
+
+        super.userEventTriggered(ctx, evt);
     }
 
     @Override

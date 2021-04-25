@@ -56,4 +56,14 @@ public class angusMessage {
     public void setSendMsg(String sendMsg) {
         this.sendMsg = sendMsg;
     }
+
+    @Override
+    public String toString() {
+        return "angusMessage{" +
+                "cmd='" + cmd + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", sendTime=" + sendTime +
+                ", sendMsg='" + sendMsg + '\'' +
+                '}';
+    }
 }

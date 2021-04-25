@@ -10,7 +10,8 @@ package protocol;
 public enum ChatCmdType {
     LOGIN("login"),
     CHAT("chat"),
-    LOGOUT("logout");
+    LOGOUT("logout"),
+    HEART("heart");
 
     /**
      * 在这里涉及好angusMessage的格式说明
