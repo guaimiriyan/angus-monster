@@ -27,7 +27,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         RpcRequest request = (RpcRequest)msg;
-
+        System.out.println("llllllllllllllllll");
         //当客户端建立连接时，需要从自定义协议中获取信息，拿到具体的服务和实参
         //使用反射调用
         final Object invoke = invoke(request);

@@ -1,6 +1,7 @@
 package config;
 
 import client.RpcClientProxy;
+import discovery.ZkDiscovery;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +18,11 @@ public class ClientConfig {
  @Bean(name = "rpcClient")
     public RpcClientProxy getRpcClientProxy(){
      return new RpcClientProxy();
+ }
+
+ @Bean(name = "zkDiscovery")
+    public ZkDiscovery getZkDiscovery(){
+     return new ZkDiscovery();
  }
 
 }

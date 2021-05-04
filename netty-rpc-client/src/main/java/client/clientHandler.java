@@ -27,6 +27,7 @@ public class clientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        ctx.close();
         System.out.println("client exception is general");
     }
 }

@@ -1,5 +1,8 @@
 package client;
 
+import discovery.ZkDiscovery;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.lang.reflect.Proxy;
 
 /**
@@ -11,7 +14,10 @@ import java.lang.reflect.Proxy;
  */
 public class RpcClientProxy {
 
-    public <T> T clientProxy(Class<T> tClass,String ip ,int port){
-        return (T) Proxy.newProxyInstance(tClass.getClassLoader(),new Class[]{tClass},new RpcInvocationHandler(ip,port));
+    @Autowired
+    ZkDiscovery zkDiscovery;
+
+    public <T> T clientProxy(Class<T> tClass){
+        return (T) Proxy.newProxyInstance(tClass.getClassLoader(),new Class[]{tClass},new RpcInvocationHandler(zkDiscovery));
     }
 }
