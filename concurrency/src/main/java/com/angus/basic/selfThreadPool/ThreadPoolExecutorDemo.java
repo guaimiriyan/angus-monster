@@ -17,7 +17,9 @@ public class ThreadPoolExecutorDemo {
         //计算
         int i = 1 << 29;
         String s = Integer.toBinaryString(i);
-        //
+        //计算
+        int i2 = (~((1 << 29) - 1));
+        s= Integer.toBinaryString(i2);
         System.out.println(s);
         /**
          * public ThreadPoolExecutor(int corePoolSize, //线程池核心线程数

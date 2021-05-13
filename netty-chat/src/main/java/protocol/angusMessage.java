@@ -3,25 +3,23 @@ package protocol;
 import org.msgpack.annotation.Message;
 
 /**
- * @author admin
+ * @author angus
  * @version 1.0.0
  * @ClassName angusMessage.java
  * @Description TODO
- * @createTime 2021年04月24日 01:42:00
+ * @createTime 2021年04月23日 10:18:00
  */
 @Message
 public class angusMessage {
-    String cmd;
-    String nickName;
-    long sendTime;
-    String sendMsg;
+    private String cmd;
+    private String nickName;
+    private long sendTime;
+    private String sendMsg;
 
-    public angusMessage(){}
-
-    public angusMessage(String cmd, String nickName, long sendTime, String sendMsg) {
-        this.cmd = cmd;
-        this.nickName = nickName;
-        this.sendTime = sendTime;
+    public angusMessage(String logout, String nickname, long currentTimeMillis, String sendMsg) {
+        this.cmd = logout;
+        this.nickName = nickname;
+        this.sendTime = currentTimeMillis;
         this.sendMsg = sendMsg;
     }
 
