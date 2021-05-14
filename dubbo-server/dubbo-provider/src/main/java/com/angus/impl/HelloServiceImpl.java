@@ -10,11 +10,12 @@ import service.IHelloService;
  * @Description TODO
  * @createTime 2021年05月13日 09:44:00
  */
-@DubboService(interfaceClass = IHelloService.class)
+@DubboService(interfaceClass = IHelloService.class,loadbalance = "random",weight = 10)
 public class HelloServiceImpl implements IHelloService {
 
     @Override
-    public String hello(String echo) {
-        return "sb";
+    public String hello(String echo) throws InterruptedException {
+        System.out.println("hello");
+        return echo;
     }
 }

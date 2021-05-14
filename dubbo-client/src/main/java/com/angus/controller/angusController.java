@@ -1,5 +1,6 @@
 package com.angus.controller;
 
+import com.angus.Mock.HelloServiceMock;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +16,10 @@ import service.IHelloService;
  */
 @RestController("/angus")
 public class angusController {
-    @DubboReference(interfaceClass = IHelloService.class)
+    @DubboReference(interfaceClass = IHelloService.class,cluster = "failfast",timeout = 3000,mock = "com.angus.Mock.HelloServiceMock")
     IHelloService iHelloService;
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() throws InterruptedException {
         return iHelloService.hello("hello world!");
     }
 }

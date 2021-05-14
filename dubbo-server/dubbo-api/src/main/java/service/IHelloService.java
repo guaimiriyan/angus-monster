@@ -9,5 +9,5 @@ package service;
  */
 public interface IHelloService {
 
-    String hello(String echo);
+    String hello(String echo) throws InterruptedException;
 }
