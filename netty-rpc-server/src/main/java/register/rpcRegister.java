@@ -13,9 +13,14 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import register.center.ZkRegisterCenter;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,6 +34,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class rpcRegister implements ApplicationContextAware, InitializingBean {
 
     Map<String,Object> registerRpcService = new ConcurrentHashMap<>();
+
+    @Autowired
+    ZkRegisterCenter zkRegisterCenter;
+
+    int port;
+    public rpcRegister(int port){
+        this.port = port;
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -62,11 +75,11 @@ public class rpcRegister implements ApplicationContextAware, InitializingBean {
                     })
                     .option(ChannelOption.SO_BACKLOG,128)
                     .childOption(ChannelOption.SO_KEEPALIVE,true);
-            final ChannelFuture sync = serverBootstrap.bind(8080).sync();
+            final ChannelFuture sync = serverBootstrap.bind(port).sync();
             System.out.println("netty rpc server start listen at 8080");
             sync.channel().closeFuture().sync();
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
 
@@ -83,6 +96,17 @@ public class rpcRegister implements ApplicationContextAware, InitializingBean {
             final String version = annotation.version();
             String registerName = value.getName()+version;
             registerRpcService.put(registerName,o);
+            zkRegisterCenter.register(registerName, getAddress()+":"+port);
         }
+    }
+
+    private static String getAddress(){
+        InetAddress inetAddress=null;
+        try {
+            inetAddress=InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return inetAddress.getHostAddress();// 获得本机的ip地址
     }
 }

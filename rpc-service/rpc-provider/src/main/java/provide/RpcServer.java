@@ -71,6 +71,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
             final String version = annotation.version();
             String registerName = value.getName()+version;
             registerRpcService.put(registerName,o);
+
         }
 
     }

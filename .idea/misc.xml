@@ -13,10 +13,27 @@
         <option value="$PROJECT_DIR$/designModel/pom.xml" />
         <option value="$PROJECT_DIR$/base/pom.xml" />
         <option value="$PROJECT_DIR$/spring/pom.xml" />
+        <option value="$PROJECT_DIR$/net/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-server/pom.xml" />
+        <option value="$PROJECT_DIR$/io/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-service/rpc-api/pom.xml" />
         <option value="$PROJECT_DIR$/rpc-service/pom.xml" />
         <option value="$PROJECT_DIR$/rpc-client/pom.xml" />
-        <option value="$PROJECT_DIR$/io/pom.xml" />
+        <option value="$PROJECT_DIR$/netty-rpc-client/pom.xml" />
+        <option value="$PROJECT_DIR$/netty-rpc-server/pom.xml" />
+        <option value="$PROJECT_DIR$/netty-chat/pom.xml" />
+        <option value="$PROJECT_DIR$/boot-starter-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/bootStartDemo/pom.xml" />
+        <option value="$PROJECT_DIR$/zookeeperDemo/pom.xml" />
+        <option value="$PROJECT_DIR$/dubbo-server/pom.xml" />
+        <option value="$PROJECT_DIR$/dubbo-client/pom.xml" />
+        <option value="$PROJECT_DIR$/springExesion/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/boot-starter-demo/boot-demo/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />

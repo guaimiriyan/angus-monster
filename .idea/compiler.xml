@@ -2,28 +2,35 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="bootDemo" />
+        <module name="netty-rpc-server" />
+        <module name="spring" />
+        <module name="foodie-api" />
+        <module name="design" />
+        <module name="rpc-api" />
+        <module name="net" />
+        <module name="dubbo-client" />
+        <module name="springExesion" />
         <module name="foodie-service" />
         <module name="rpc-provider" />
         <module name="io" />
-        <module name="bootDemo" />
         <module name="foodie-common" />
+        <module name="zookeeperDemo" />
         <module name="gupaoedu-vip-spring" />
         <module name="concurrency" />
         <module name="netty-chat" />
         <module name="format-spring-boot-starter" />
-        <module name="foodie-api" />
         <module name="foodie-mapper" />
+        <module name="netty-rpc-client" />
         <module name="dubbo-provider" />
-        <module name="design" />
         <module name="rpc-client" />
         <module name="foodie-pojo" />
-        <module name="rpc-api" />
         <module name="gupaoedu-vip-netty-chat" />
-        <module name="dubbo-client" />
         <module name="base" />
         <module name="dubbo-api" />
       </profile>
@@ -50,11 +57,17 @@
       <module name="gupaoedu-vip-spring" target="8" />
       <module name="io" target="8" />
       <module name="mybatis-generator-for-imooc" target="1.5" />
+      <module name="net" target="8" />
       <module name="netty-chat" target="8" />
+      <module name="netty-rpc-client" target="8" />
+      <module name="netty-rpc-server" target="8" />
       <module name="rpc-api" target="8" />
       <module name="rpc-client" target="1.7" />
       <module name="rpc-provider" target="8" />
       <module name="rpc-service" target="8" />
+      <module name="spring" target="8" />
+      <module name="springExesion" target="8" />
+      <module name="zookeeperDemo" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -66,6 +79,7 @@
       <module name="foodie-service" options="-parameters" />
       <module name="gupaoedu-vip-netty-chat" options="" />
       <module name="gupaoedu-vip-spring" options="-verbose -bootclasspath &quot;$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_261/jre/lib/rt.jar&quot;" />
+      <module name="spring" options="-verbose -bootclasspath &quot;$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar&quot;" />
     </option>
   </component>
 </project>

@@ -24,5 +24,14 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.1.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.6.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.curator:curator-framework:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.curator:curator-client:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.5.3-beta" level="project" />
+    <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty:3.10.5.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.curator:curator-recipes:4.0.1" level="project" />
   </component>
 </module>
