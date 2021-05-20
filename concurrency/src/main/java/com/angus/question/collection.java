@@ -23,7 +23,8 @@ public class collection<T> {
 
     public synchronized void add(T t){
         try {
-        if (queque.size()==limitsize){
+            //这里不能使用if
+        while (queque.size()==limitsize){
             System.out.println("队列已经满了，不能add");
                 this.wait();
         }
@@ -39,7 +40,8 @@ public class collection<T> {
 
     public synchronized T take(){
         try {
-            if (queque.size() == 0){
+            //这里不能使用if
+            while (queque.size() == 0){
                 System.out.println("队列为空，不能take");
                 this.wait();
             }
