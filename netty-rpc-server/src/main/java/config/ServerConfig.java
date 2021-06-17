@@ -1,8 +1,10 @@
 package config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import register.center.ZkRegisterCenter;
 import register.rpcRegister;
 
 /**
@@ -16,8 +18,13 @@ import register.rpcRegister;
 @ComponentScan(value = {"service"})
 public class ServerConfig {
 
+    @Bean(name = "zkRegisterCenter")
+    public ZkRegisterCenter  getZkRegisterCenter(){
+        return new ZkRegisterCenter();
+    }
+
     @Bean(name = "rpcRgister")
     public rpcRegister getRpcRgister(){
-        return new rpcRegister();
+        return new rpcRegister(8089);
     }
 }
