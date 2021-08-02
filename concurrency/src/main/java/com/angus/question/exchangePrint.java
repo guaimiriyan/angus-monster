@@ -22,11 +22,10 @@ public class exchangePrint {
             char c = 'a';
             for (int i = 0; i < 27; i++) {
                 synchronized (lock){
-                    System.out.println((char)(c+i));
                     try {
+                        System.out.println((char)(c+i));
                         lock.notify();
                         lock.wait();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

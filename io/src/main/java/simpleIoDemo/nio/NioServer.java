@@ -53,15 +53,19 @@ public class NioServer {
 
    private void listen(){
 
+       while (true) {
+           //System.out.println("ssssss");
            try {
-               while (true){
+               //
+               while (selector.select(50) > 0) {
+                   //System.out.println("ssssss");
                    /**
                     * 此时应该是去获取一些基于信号驱动标记为为就绪状态的一些fd
                     */
-                   selector.select();
+                   ;
                    final Set<SelectionKey> selectionKeys = selector.selectedKeys();
                    final Iterator<SelectionKey> iterator = selectionKeys.iterator();
-                   while (iterator.hasNext()){
+                   while (iterator.hasNext()) {
                        final SelectionKey next = iterator.next();
                        iterator.remove();
                        process(next);
@@ -72,6 +76,7 @@ public class NioServer {
            } catch (IOException e) {
                e.printStackTrace();
            }
+       }
 
    }
 
@@ -87,6 +92,7 @@ public class NioServer {
            //重新设置客户端套接字的内容
            accept.register(selector,SelectionKey.OP_READ);
        }else if (key.isReadable()){
+           System.out.println("进入读状态");
            final SocketChannel channel = (SocketChannel) key.channel();
            final int read = channel.read(byteBuffer);
            if (read>0){
@@ -95,16 +101,22 @@ public class NioServer {
                //从下面就可以进行读操作了
                String content = new String(byteBuffer.array(),0,read);
                //将该channel标志为写的状态
-               channel.register(selector,SelectionKey.OP_WRITE);
+               channel.register(selector,SelectionKey.OP_WRITE|SelectionKey.OP_READ);
                //将读的内容传送到下一次中的轮询
-               key.attach(content);
+               //key.attach(content);
+               //byteBuffer.
+
                System.out.println("接收到客户端"+channel.getLocalAddress().toString()+":"+content);
            }
-       }else if (key.isWritable()){
+       } else if (key.isWritable()){
            final SocketChannel channel = (SocketChannel) key.channel();
-           final String attachment = "服务器回显："+(String)key.attachment();
-           channel.write(ByteBuffer.wrap(attachment.getBytes()));
-           channel.close();
+           channel.write(ByteBuffer.wrap("hello client".getBytes()));
+           //channel.register(selector,SelectionKey.OP_READ);
+           System.out.println("进入写状态");
+           //final String attachment = "服务器回显："+(String)key.attachment();
+           //channel.write(ByteBuffer.wrap(attachment.getBytes()));
+           //channel.register(selector,SelectionKey.OP_READ);
+          // channel.close();
        }
     }
 

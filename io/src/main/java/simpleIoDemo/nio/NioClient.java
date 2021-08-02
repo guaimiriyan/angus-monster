@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -67,21 +68,33 @@ public class NioClient {
                 }
 
 
-            }
-            if (key.isReadable()){
+            }else if (key.isReadable()){
+                System.out.println("进入读状态");
                 final ByteBuffer allocate = ByteBuffer.allocate(1024);
                 final int read = channel.read(allocate);
                 if (read>0){
                     allocate.flip();
                     String content = new String(allocate.array(),0,read);
                     System.out.println(content);
+                    //channel.write(ByteBuffer.wrap("hello server".getBytes()));
+                    channel.register(selector,SelectionKey.OP_WRITE);
+//                    Scanner sc = new Scanner(System.in);
+//                    String sql = sc.nextLine();
+//                    ByteBuffer byteBuffer = ByteBuffer.wrap(sql.getBytes());
+//                    //byteBuffer.flip();
+//                    channel.write(byteBuffer);
                 }
 
+            }else if (key.isWritable()){
+                System.out.println("进入写状态");
+                channel.write(ByteBuffer.wrap("hello client".getBytes()));
+                channel.register(selector,SelectionKey.OP_READ);
             }
         }
     }
 
     private void dowrite(SocketChannel channel) throws  IOException{
+
         String sql = "客户端连接服务器！";
         ByteBuffer byteBuffer = ByteBuffer.wrap(sql.getBytes());
         //byteBuffer.flip();
