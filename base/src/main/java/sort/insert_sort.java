@@ -9,7 +9,8 @@ package sort;
  */
 public class insert_sort {
     public static void main(String[] args) {
-        final int[] datas = RandomUtil.getRandomIntArray(10, 100);
+        final int[] datas = RandomUtil.getRandomIntArray(100000, 10000);
+        final long start = System.currentTimeMillis();
         for (int j = 1; j < datas.length; j++) {
             for (int i = j; i >0 ; i--) {
                 //进行交换
@@ -22,8 +23,10 @@ public class insert_sort {
                 }
             }
         }
-        for (int i = 0; i < datas.length; i++) {
-            System.out.print(datas[i]+",");
-        }
+        final long end = System.currentTimeMillis();
+        System.out.println("插入排序消耗时间"+(end-start));
+//        for (int i = 0; i < datas.length; i++) {
+//            System.out.print(datas[i]+",");
+//        }
     }
 }

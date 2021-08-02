@@ -3,11 +3,11 @@ package sort;
 /**
  * @author angus
  * @version 1.0.0
- * @ClassName Shell_Sort.java
- * @Description 希尔排序
- * @createTime 2021年08月02日 17:09:00
+ * @ClassName Shell_sort_2.java
+ * @Description TODO
+ * @createTime 2021年08月02日 17:58:00
  */
-public class Shell_Sort {
+public class Shell_sort_2 {
     public static void main(String[] args) {
         final int[] datas = RandomUtil.getRandomIntArray(100000, 10000);
         //希尔排序最大的，开始将间隔设置位4
@@ -16,8 +16,7 @@ public class Shell_Sort {
         for (int gap = 4;gap>=1;gap = gap/2){
             //查看这个间隔为多少，就是多少组
 //            System.out.println(gap+":");
-            for (int i = 0;i< gap;i++){
-                for (int j = i;j<datas.length;j+=gap){
+                for (int j = gap;j<datas.length;j++){
                     for (int k = j;k>=gap;k-=gap){
                         if (datas[k]<datas[k-gap]){
                             int temp = datas[k];
@@ -27,7 +26,6 @@ public class Shell_Sort {
                             break;
                         }
                     }
-                }
             }
 //            for (int i = 0; i < datas.length; i++) {
 //                System.out.print(datas[i]+",");
@@ -35,7 +33,7 @@ public class Shell_Sort {
 //            System.out.println("");
         }
         final long end = System.currentTimeMillis();
-        System.out.println("希尔排序1消耗时间"+(end-start));
+        System.out.println("希尔排序2消耗时间"+(end-start));
 //        for (int i = 0; i < datas.length; i++) {
 //            System.out.print(datas[i]+",");
 //        }
