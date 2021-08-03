@@ -19,9 +19,9 @@ public class Merge_sort {
         int[] sorted = mergeSort(datas,0,datas.length-1);
         final long end = System.currentTimeMillis();
         System.out.println("归并排序消耗时间"+(end-start));
-         for (int i = 0; i < sorted.length; i++) {
-            System.out.print(sorted[i]+",");
-        }
+//         for (int i = 0; i < sorted.length; i++) {
+//            System.out.print(sorted[i]+",");
+//        }
     }
 
     private static int[] mergeSort(int[] datas,int start,int end) {
@@ -49,11 +49,15 @@ public class Merge_sort {
            int merge2Index = 0;
            final int[] mergeData = new int[lenth];
            for (int i = 0; i < lenth; i++) {
+               /**
+                * 情况一、左边还有需要变例的，且左边比右边小
+                * 情况二、左边还有需要遍历的，右边已经遍历完成
+                */
                if (merge1Index<merge1.length&&(merge2Index==merge2.length||merge1[merge1Index]<merge2[merge2Index])){
                    mergeData[i] = merge1[merge1Index];
                    merge1Index++;
                }else {
-                   mergeData[i] =merge2[merge2Index];
+                   mergeData[i] = merge2[merge2Index];
                    merge2Index++;
                }
            }
