@@ -17,9 +17,9 @@ public class Quick_sort {
         quickSort(datas,0,datas.length-1);
         final long end = System.currentTimeMillis();
         System.out.println("快速排序消耗时间"+(end-start));
-//         for (int i = 0; i < datas.length; i++) {
-//            System.out.print(datas[i]+",");
-//        }
+         for (int i = 0; i < datas.length; i++) {
+            System.out.print(datas[i]+",");
+        }
     }
 
     private static void quickSort(int[] datas,int start,int end) {
@@ -40,16 +40,13 @@ public class Quick_sort {
 
             }else {
                 if (datas[right]>=temp)right--;
-                if (datas[left]<=temp){
-                    left++;
-
-                }
+                if (datas[left]<=temp) left++;
             }
         }
         if (datas[left]>temp){
             int chg = datas[start];
-        datas[start] = datas[left-1];
-        datas[left-1] = chg;
+            datas[start] = datas[left-1];
+            datas[left-1] = chg;
         }else {
             int chg = datas[start];
             datas[start] = datas[left];
