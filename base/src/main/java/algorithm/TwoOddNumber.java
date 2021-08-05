@@ -24,9 +24,7 @@ public class TwoOddNumber {
         int eor3 = 0;
         System.out.println(Integer.toBinaryString(eor2));
         for (int i = 0; i < datas.length; i++) {
-            final int i1 = datas[i] & eor2;
-            System.out.println(i1);
-            if (i1 == eor2) eor3^=datas[i];
+            if ((datas[i] & eor2) == eor2) eor3^=datas[i];
         }
         System.out.println(eor3);
         //
