@@ -4,7 +4,7 @@ package algorithm;
  * @author angus
  * @version 1.0.0
  * @ClassName TwoOddNumber.java
- * @Description 一个数组里有只有两个数出现奇数次如何找到这两个数
+ * @Description 一个数组里有且只有两个数出现奇数次如何找到这两个数
  * @createTime 2021年08月05日 09:58:00
  */
 public class TwoOddNumber {
